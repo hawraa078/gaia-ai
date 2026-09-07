@@ -71,7 +71,7 @@ function SpeciesImage({ scientificName, commonName }) {
       setImageLoading(true);
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/species-image?name=${encodeURIComponent(scientificName)}`
+          `https://gaia-ai-9gnm.onrender.com/species-image?name=${encodeURIComponent(scientificName)}`
         );
         if (!response.ok) throw new Error("Image lookup failed");
         const result = await response.json();
@@ -166,10 +166,10 @@ function App() {
       // Run the independent data requests together so the UI feels much faster.
       const [riskResponse, speciesResponse, interventionResponse, ecosystemResponse] =
         await Promise.all([
-          fetch(`http://127.0.0.1:8000/risk?lat=${lat}&lon=${lon}`),
-          fetch(`http://127.0.0.1:8000/species?lat=${lat}&lon=${lon}`),
-          fetch(`http://127.0.0.1:8000/intervention?lat=${lat}&lon=${lon}`),
-          fetch(`http://127.0.0.1:8000/ecosystem?lat=${lat}&lon=${lon}`),
+          fetch(`https://gaia-ai-9gnm.onrender.com/risk?lat=${lat}&lon=${lon}`),
+          fetch(`https://gaia-ai-9gnm.onrender.com/species?lat=${lat}&lon=${lon}`),
+          fetch(`https://gaia-ai-9gnm.onrender.com/intervention?lat=${lat}&lon=${lon}`),
+          fetch(`https://gaia-ai-9gnm.onrender.com/ecosystem?lat=${lat}&lon=${lon}`),
         ]);
 
       if (
@@ -198,7 +198,7 @@ function App() {
       // If AI fails, the evidence-grounded analysis still remains usable.
       try {
         const aiResponse = await fetch(
-          `http://127.0.0.1:8000/ai-analysis?lat=${lat}&lon=${lon}&limit=5`
+          `https://gaia-ai-9gnm.onrender.com/ai-analysis?lat=${lat}&lon=${lon}&limit=5`
         );
         if (aiResponse.ok) {
           setAiData(await aiResponse.json());
